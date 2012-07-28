@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    %title Convert iPhone/iPad/iPod PNG files online
+    %link{:rel => 'shortcut icon', :href => '/favicon.png'}
+    = stylesheet_link_tag    "application", :media => "all"
+    = csrf_meta_tags
+  %body
+    = yield
+    = javascript_include_tag "application"

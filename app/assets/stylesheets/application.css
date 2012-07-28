@@ -1,0 +1,25 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap.min
+ *= require_self
+ *= require_tree .
+ */
+
+body { background: transparent url(/assets/body-bg.png) repeat; }
+
+.loading { background: transparent url(/assets/loading.gif) no-repeat scroll center center; height: 140px; display: block; text-align: center; }
+
+/* Footer */
+
+html, body { height: 100%; }
+.container:first-child { min-height: 100%; height: 100%; margin-bottom: -60px; }
+.footer { height: 60px; }
+.footer p { text-align: right; }

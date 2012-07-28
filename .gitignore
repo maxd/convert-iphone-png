@@ -1,0 +1,19 @@
+# Ignore bundler config
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+/public/system
+
+# Ignore database config
+/config/database.yml
+
+# Ignore MAC OS stuff
+.DS_Store
+
+# Ignore Ruby Mine stuff
+.idea

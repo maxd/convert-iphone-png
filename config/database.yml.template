@@ -1,0 +1,19 @@
+defaults: &defaults
+  username: deployer
+  password: password
+  adapter: mysql2
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+development:
+  database: convert_iphone_png_development
+  <<: *defaults
+  
+staging:
+  database: convert_iphone_png_staging
+  <<: *defaults
+
+production:
+  database: convert_iphone_png_production
+  <<: *defaults

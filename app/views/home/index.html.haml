@@ -1,0 +1,23 @@
+.container
+  .row
+    .span12.header
+      %h2 Convert iPhone PNG files online!
+      %p.lead
+        Use this service you can convert iPhone PNG files (with CgBI chunk) extracted from any IPA file to standard PNG file format.
+        Forget about <strike>pngcrush</strike>!
+
+  .row
+    .span6.offset3
+      .drop-area
+        %input#files{:type => 'file', :name => 'files', :multiple => :multiple}
+        = image_tag 'drop-icon.png'
+        %span Drop your iPhone PNG files here or click to select file
+
+  .row
+    .span12.result
+
+.container
+  .row.footer
+    .span12
+      %p Copyright &copy; 2012 <a href='http://protonail.com' target='_blank'>protonail.com</a>
+      %p <a href='mailto:support+convert-iphone-png@protonail.com'>Send feedback</a>

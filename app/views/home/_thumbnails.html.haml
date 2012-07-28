@@ -1,0 +1,12 @@
+%ul.thumbnails
+  - pictures.each_with_index do |picture, index|
+    %li.span3
+      .thumbnail
+        %a{href: "#picture-#{index}", :'data-toggle' => 'lightbox'}
+          = image_tag picture.png_file.url(:thumb), :title => picture.png_file.original_filename
+        .caption
+          %h5{style: 'text-align: center;'}= picture.png_file.original_filename
+
+        .lightbox.fade{id: "picture-#{index}", style: 'display:none'}
+          .lightbox-content
+            = image_tag picture.png_file.url(:converted), :title => picture.png_file.original_filename
