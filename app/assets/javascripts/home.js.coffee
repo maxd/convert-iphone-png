@@ -32,6 +32,6 @@ class Uploader
       success: (data) ->
         $('.result').html(data)
       error: (xhr, textStatus, errorThrown) ->
-        $('.result').html("Internal error. Try again later.")
+        $('.result').html("<div class='alert alert-error'>Internal error. Try again later.</div>")
 
 window.uploader = new Uploader $("#files")
