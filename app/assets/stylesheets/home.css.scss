@@ -22,3 +22,23 @@
     opacity: 0;
   }
 }
+
+.thumbnail {
+  a {
+    display: block;
+    width: 210px;
+    height: 170px;
+
+    line-height: 170px;
+    text-align: center;
+
+    img {
+      max-width: 210px;
+      max-height: 170px;
+      margin: 0 auto;
+
+      vertical-align: middle;
+    }
+  }
+}
+
