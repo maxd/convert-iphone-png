@@ -5,12 +5,8 @@ class HomeController < ApplicationController
 
   def upload
     @pictures = params[:files].map do |file|
-      case File.extname(file.original_filename)
-        when '.png'
-          Picture.create!({ png_file: file })
-        when '.ipa'
-      end
-    end
+      Picture.create!({ png_file: file }) if File.extname(file.original_filename) == '.png'
+    end.compact
 
     render :layout => false
   end
