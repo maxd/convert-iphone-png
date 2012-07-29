@@ -8,10 +8,11 @@
 
   .row
     .span6.offset3
-      .drop-area
-        %input#files{:type => 'file', :name => 'files', :multiple => :multiple}
-        = image_tag 'drop-icon.png'
-        %span Drop your iPhone PNG files here or click to select file
+      %form#upload-files{method: 'POST', action: '/upload', enctype: 'multipart/form-data'}
+        .drop-area
+          %input#files{:type => 'file', :name => 'files[]', :multiple => :multiple}
+          = image_tag 'drop-icon.png'
+          %span Drop your iPhone PNG files here or click to select file
 
   .row
     .span12.result
