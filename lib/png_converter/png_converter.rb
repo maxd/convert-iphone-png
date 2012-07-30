@@ -16,6 +16,8 @@ class PNGConverter
       in_zstream = Zlib::Inflate.new(-Zlib::MAX_WBITS)
       out_zstream = Zlib::Deflate.new
 
+      data_tail = ''
+
       png_file.chunks.each do |chunk|
         if chunk.type == PNGChunkTypes::IHDR
           width = chunk.width
@@ -23,7 +25,10 @@ class PNGConverter
 
         if chunk.type == PNGChunkTypes::IDAT
           data = in_zstream.inflate(chunk.data)
+
+          data, data_tail = align_data_by_width(width, data, data_tail)
           data = swap_colors(data, width)
+
           data = out_zstream.deflate(data, last_idat_chunk == chunk ? Zlib::FINISH : nil)
 
           chunk = PNGChunk.new(chunk.type, data)
@@ -39,6 +44,14 @@ class PNGConverter
 
       PNGFile.new(chunks)
     end
+  end
+
+  def align_data_by_width(width, data, data_tail)
+    data = data_tail + data
+
+    tail_length = data.length % (4 * width + 1)
+
+    [data[0, data.length - tail_length], data[-tail_length, tail_length]]
   end
 
   def swap_colors(data, width)
