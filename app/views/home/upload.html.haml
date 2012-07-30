@@ -1,1 +1,8 @@
-= render partial: 'thumbnails', locals: { pictures: @pictures }
+- if @has_ignored_pictures
+  .alert.alert-warning Some files has been ignored. You can upload PNG files only.
+
+- if @pictures.present?
+  .menu
+    = link_to 'Download All Pictures', download_all_url(group: @group), class: 'btn'
+
+  = render partial: 'thumbnails', locals: { pictures: @pictures }

@@ -6,20 +6,9 @@ class Uploader
       return false;
 
   fileElementChanged = ->
-    correct_files = _(this.files).select (f) -> isValidFileType(f) && isValidFileSize(f)
+    uploadFile()
 
-    if correct_files.length != this.files.length
-      alert 'Some files will be ignore. You can upload PNG files with size less 50 MB'
-
-    uploadFile(correct_files)
-
-  isValidFileType = (file) ->
-    /\.(png)$/.test(file.name)
-
-  isValidFileSize = (file) ->
-    file.size < 50 * 1024 * 1024
-
-  uploadFile = (files) ->
+  uploadFile = () ->
     $('.result').html("<div class='loading'></div>")
 
     $('#upload-files').ajaxSubmit

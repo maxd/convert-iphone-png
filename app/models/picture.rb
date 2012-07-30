@@ -1,5 +1,5 @@
 class Picture < ActiveRecord::Base
-  attr_accessible :wrong, :png_file
+  attr_accessible :png_file, :group
 
   has_attached_file :png_file,
                     styles: { converted: '' },

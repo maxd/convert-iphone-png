@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(:version => 20120718201229) do
     t.string   "png_file_content_type"
     t.integer  "png_file_file_size"
     t.datetime "png_file_updated_at"
-    t.boolean  "wrong"
+    t.string   "group",                 :null => false
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
