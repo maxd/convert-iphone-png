@@ -6,6 +6,10 @@ class Uploader
       return false;
 
   fileElementChanged = ->
+    if this.files.length > 50
+      $('.result').html("<div class='alert alert-warning'>You can't upload more than 50 files per time.</div>")
+      return
+
     uploadFile()
 
   uploadFile = () ->
