@@ -1,5 +1,5 @@
 require 'securerandom'
-require 'zip/zip'
+require 'zipruby'
 
 class HomeController < ApplicationController
 
@@ -9,9 +9,28 @@ class HomeController < ApplicationController
   def upload
     @group = SecureRandom.hex(16)
 
-    @pictures = params[:files].map do |file|
-      Picture.create!({ png_file: file, group: @group }) if File.extname(file.original_filename) == '.png'
-    end.compact
+    @pictures = []
+    params[:files].each do |file|
+      case File.extname(file.original_filename).downcase
+        when '.png'
+          @pictures << Picture.create!({ png_file: file, group: @group, original_file_name: File.basename(file.original_filename)})
+        when '.ipa'
+          Zip::Archive.open(file.path) do |ar|
+            ar.each do |f|
+              ext = File.extname(f.name).downcase
+              case ext
+                when '.png', '.jpg', '.jpeg'
+                  temp = Tempfile.new(['picture', ext])
+                  temp.binmode
+                  f.read { |chunk| temp << chunk }
+                  temp.flush
+
+                  @pictures << Picture.create!({png_file: temp, group: @group, original_file_name: File.basename(f.name)})
+              end
+            end
+          end
+      end
+    end
 
     @has_ignored_pictures = params[:files].length != @pictures.length
 
@@ -23,11 +42,12 @@ class HomeController < ApplicationController
       pictures = Picture.where(group: params[:group])
 
       temp = Tempfile.new(%w(all-converted-pictures zip))
+      temp.binmode
 
-      Zip::ZipOutputStream.open(temp.path) do |z|
-        pictures.each do |picture|
-          z.put_next_entry picture.png_file_file_name
-          z.write IO.read(picture.png_file.path(:converted))
+      Zip::Archive.open(temp.path, Zip::CREATE) do |ar|
+        pictures.each_with_index do |picture, index|
+          original_file_name = "#{File.basename(picture.original_file_name)}.#{index}#{File.extname(picture.original_file_name)}"
+          ar.add_file(original_file_name, picture.png_file.path(:converted))
         end
       end
 

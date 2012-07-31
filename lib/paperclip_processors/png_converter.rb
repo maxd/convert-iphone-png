@@ -22,7 +22,7 @@ class PngConverter < Paperclip::Processor
     output_png_file.write(output_file)
 
     output_file
-  rescue PNGStandardFormatException
+  rescue PNGStandardFormatException, PNGIncorrectSignatureException
     @file
   end
 

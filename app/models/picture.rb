@@ -1,5 +1,5 @@
 class Picture < ActiveRecord::Base
-  attr_accessible :png_file, :group
+  attr_accessible :png_file, :group, :original_file_name
 
   has_attached_file :png_file,
                     styles: { converted: '' },
@@ -9,5 +9,5 @@ class Picture < ActiveRecord::Base
 
   validates_attachment :png_file,
                        presence: true,
-                       content_type: { content_type: 'image/png' }
+                       content_type: { content_type: /image/}
 end

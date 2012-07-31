@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(:version => 20120718201229) do
 
   create_table "pictures", :force => true do |t|
+    t.string   "original_file_name"
     t.string   "png_file_file_name"
     t.string   "png_file_content_type"
     t.integer  "png_file_file_size"
