@@ -29,10 +29,10 @@ class HomeController < ApplicationController
               end
             end
           end
+        else
+          @has_ignored_pictures = true
       end
     end
-
-    @has_ignored_pictures = params[:files].length != @pictures.length
 
     render :layout => false
   end

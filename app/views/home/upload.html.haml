@@ -1,5 +1,5 @@
 - if @has_ignored_pictures
-  .alert.alert-warning Some files has been ignored. You can upload PNG files only.
+  .alert.alert-warning Some files has been ignored. You can upload PNG and IPA files only.
 
 - if @pictures.present?
   %form{ method:'POST', action:download_zip_path}
