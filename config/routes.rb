@@ -2,5 +2,5 @@ ConvertIphonePng::Application.routes.draw do
   root :to => 'home#index'
 
   post '/upload' => 'home#upload'
-  get '/download-all' => 'home#download_all', as: 'download_all'
+  post '/download-zip' => 'home#download_zip', as: 'download_zip'
 end

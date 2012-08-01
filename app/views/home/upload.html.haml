@@ -2,7 +2,10 @@
   .alert.alert-warning Some files has been ignored. You can upload PNG files only.
 
 - if @pictures.present?
-  .menu
-    = link_to 'Download All Pictures', download_all_url(group: @group), class: 'btn'
+  %form{ method:'POST', action:download_zip_path}
+    .menu
+      %button{type: 'submit', class: 'btn', name: 'download-type', value: 'all'} Download All Pictures
+      %button{type: 'submit', class: 'btn', name: 'download-type', value: 'checked'} Download Checked Pictures
+      %input{type: 'hidden', name: 'group', value: @group}
 
-  = render partial: 'thumbnails', locals: { pictures: @pictures }
+    = render partial: 'thumbnails', locals: { pictures: @pictures, show_checkboxes: true }

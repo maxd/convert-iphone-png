@@ -37,10 +37,16 @@ class HomeController < ApplicationController
     render :layout => false
   end
 
-  def download_all
-    unless params[:group].blank?
-      pictures = Picture.where(group: params[:group])
+  def download_zip
+    pictures = nil
+    case params[:'download-type']
+      when 'all'
+        pictures = Picture.where(group: params[:group])
+      when 'checked'
+        pictures = Picture.where(id: params[:picture_id].map(&:to_i))
+    end
 
+    if pictures
       temp = Tempfile.new(%w(all-converted-pictures zip))
       temp.binmode
 
@@ -57,7 +63,7 @@ class HomeController < ApplicationController
 
       temp.close
     else
-      render text: 'Wrong group', status: 404
+      render text: 'Wrong parameters', status: 404
     end
   end
 
