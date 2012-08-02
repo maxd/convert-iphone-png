@@ -3,15 +3,15 @@
 
 - if @pictures.present?
   %form{ method:'POST', action:download_zip_path}
-    .menu
-      %input{type: 'hidden', name: 'group', value: @group}
+    %input{type: 'hidden', name: 'group', value: @group}
 
+    .btn-group.menu
       %button{type: 'submit', class: 'btn', name: 'download-type', value: 'all'} Download All Pictures
       %button{type: 'submit', class: 'btn', name: 'download-type', value: 'checked'} Download Checked Pictures
 
     = render partial: 'thumbnails', locals: { pictures: @pictures, show_checkboxes: true }
 
     - if @pictures.length >= 12
-      .menu
+      .btn-group.menu
         %button{type: 'submit', class: 'btn', name: 'download-type', value: 'all'} Download All Pictures
         %button{type: 'submit', class: 'btn', name: 'download-type', value: 'checked'} Download Checked Pictures
