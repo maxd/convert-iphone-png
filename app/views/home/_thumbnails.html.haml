@@ -6,6 +6,7 @@
           = image_tag picture.png_file.url(:converted), title: picture.original_file_name
         .caption
           - if show_checkboxes
+            %a.download-icon{href: download_picture_path(picture.id), title: 'Download Picture'}
             .check
               %input{type: 'checkbox', name: 'picture_id[]', value: picture.id, id: "check-#{picture.id}"}
               %label{for: "check-#{picture.id}"}

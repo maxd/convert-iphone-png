@@ -38,7 +38,7 @@
 .thumbnail {
   position: relative;
 
-  a {
+  & > a {
     display: block;
     width: 210px;
     height: 170px;
@@ -53,6 +53,23 @@
 
       vertical-align: middle;
     }
+  }
+
+  a.download-icon {
+    display: none;
+
+    width: 23px;
+    height: 23px;
+
+    position: absolute;
+    bottom: 11px;
+    left: 13px;
+
+    background: transparent url(/assets/download-icon.png) no-repeat;
+  }
+
+  &:hover a.download-icon {
+    display: block;
   }
 
   .check {

@@ -67,4 +67,12 @@ class HomeController < ApplicationController
     end
   end
 
+  def download_picture
+    picture = Picture.find(params[:id])
+
+    send_file picture.png_file.path(:converted), :type => picture.png_file.content_type,
+              :disposition => 'attachment',
+              :filename => picture.original_file_name
+  end
+
 end
