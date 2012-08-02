@@ -9,7 +9,7 @@
             .check
               %input{type: 'checkbox', name: 'picture_id[]', value: picture.id, id: "check-#{picture.id}"}
               %label{for: "check-#{picture.id}"}
-          %h5{style: 'text-align: center;'}= picture.original_file_name
+          %h5= picture.original_file_name
 
         .lightbox.fade{id: "picture-#{index}", style: 'display:none'}
           .lightbox-content
