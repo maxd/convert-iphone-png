@@ -1,6 +1,8 @@
 require 'zlib'
 require 'png_chunk_types'
 require 'png_exceptions'
+require 'png_interlace_method_0'
+require 'png_interlace_method_1'
 
 class PNGConverter
 
@@ -8,7 +10,7 @@ class PNGConverter
     if png_file.chunks(PNGChunkTypes::CgBI).empty?
       raise PNGStandardFormatException.new("PNG file isn't in iPhone format.")
     else
-      width = 0
+      interlace_method = nil
       chunks = []
 
       last_idat_chunk = png_file.chunks(PNGChunkTypes::IDAT).last
@@ -16,18 +18,24 @@ class PNGConverter
       in_zstream = Zlib::Inflate.new(-Zlib::MAX_WBITS)
       out_zstream = Zlib::Deflate.new
 
-      data_tail = ''
-
       png_file.chunks.each do |chunk|
         if chunk.type == PNGChunkTypes::IHDR
           width = chunk.width
+          height = chunk.height
+          case chunk.interlace_method
+            when 0
+              interlace_method = PNGInterlaceMethod0.new(width, height)
+            when 1
+              interlace_method = PNGInterlaceMethod1.new(width, height)
+            else
+              raise PNGException.new('Unknown interlace method')
+          end
         end
 
         if chunk.type == PNGChunkTypes::IDAT
           data = in_zstream.inflate(chunk.data)
 
-          data, data_tail = align_data_by_width(width, data, data_tail)
-          data = swap_colors(data, width)
+          data = interlace_method.process_data(data)
 
           data = out_zstream.deflate(data, last_idat_chunk == chunk ? Zlib::FINISH : nil)
 
@@ -44,31 +52,6 @@ class PNGConverter
 
       PNGFile.new(chunks)
     end
-  end
-
-  def align_data_by_width(width, data, data_tail)
-    data = data_tail + data
-
-    tail_length = data.length % (4 * width + 1)
-
-    [data[0, data.length - tail_length], data[-tail_length, tail_length]]
-  end
-
-  def swap_colors(data, width)
-    row_index = 0
-
-    loop do
-      1.step(width * 4, 4) do |col|
-        tmp = data[row_index + col]
-        data[row_index + col] = data[row_index + col + 2]
-        data[row_index + col + 2] = tmp
-      end
-
-      row_index += (4 * width + 1)
-      break if row_index >= data.length
-    end
-
-    data
   end
 
 end
