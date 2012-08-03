@@ -5,7 +5,8 @@ class Picture < ActiveRecord::Base
                     styles: { converted: '' },
                     processors: [ :png_converter ],
                     url: '/system/png-files/:hash-:style.:extension',
-                    hash_secret: 'abacadae'
+                    hash_secret: 'abacadae',
+                    hash_data: ':attachment/:id'
 
   validates_attachment :png_file,
                        presence: true,
