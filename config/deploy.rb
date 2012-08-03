@@ -6,6 +6,9 @@ set :stages, %w(production staging)
 set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
+
 set :repository, "git@github.com:maxd/convert-iphone-png.git"
 set :scm, :git
 set :deploy_via, :copy
