@@ -15,8 +15,6 @@
 
 body { background: transparent url(/assets/body-bg.png) repeat; }
 
-.loading { background: transparent url(/assets/loading.gif) no-repeat scroll center center; height: 140px; display: block; text-align: center; }
-
 /* Footer */
 
 html, body { height: 100%; }

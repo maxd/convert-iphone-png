@@ -20,7 +20,7 @@ class Uploader
       resetForm: true
       uploadProgress: (e, position, total, percentComplete) ->
         message = if percentComplete != 100 then 'Please wait. Uploading files...' else 'Please wait. Conversion can take several minutes...'
-        $('.loading').text(message)
+        $('.loading').html('<div class="alert alert-info">' + message + '</div>')
       error: ->
         $('.result').html("<div class='alert alert-error'>Internal error. Try again later.</div>")
 
