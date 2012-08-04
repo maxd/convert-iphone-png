@@ -23,5 +23,6 @@ class Uploader
         $('.loading').html('<div class="alert alert-info">' + message + '</div>')
       error: ->
         $('.result').html("<div class='alert alert-error'>Internal error. Try again later.</div>")
+        $(this).resetForm();
 
 window.uploader = new Uploader
