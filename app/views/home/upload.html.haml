@@ -4,6 +4,7 @@
 - if @pictures.present?
   %form{ method:'POST', action:download_zip_path}
     %input{type: 'hidden', name: 'group', value: @group}
+    = token_tag(nil)
 
     .btn-group.menu
       %button{type: 'submit', class: 'btn', name: 'download-type', value: 'all'} Download All Pictures
