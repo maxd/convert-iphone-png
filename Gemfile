@@ -6,7 +6,7 @@ gem 'mysql2', '~>0.3.11'
 
 gem 'haml', '~>3.1.7'
 
-gem 'jquery-rails', '~>2.0.2'
+gem 'jquery-rails', '~>2.2.0'
 
 gem 'paperclip', '~>3.1.3'
 
