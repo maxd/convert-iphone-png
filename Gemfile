@@ -4,7 +4,7 @@ gem 'rails', '3.2.11'
 
 gem 'mysql2', '~>0.3.11'
 
-gem 'haml', '~>3.1.6'
+gem 'haml', '~>3.1.7'
 
 gem 'jquery-rails', '~>2.0.2'
 
