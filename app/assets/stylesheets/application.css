@@ -18,6 +18,6 @@ body { background: transparent url(/assets/body-bg.png) repeat; }
 /* Footer */
 
 html, body { height: 100%; }
-.container:first-child { min-height: 100%; height: 100%; margin-bottom: -60px; }
-.footer { height: 60px; }
+.wrap { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -60px; }
+.push, .footer { height: 59px; }
 .footer p { text-align: right; }

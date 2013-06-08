@@ -1,30 +1,32 @@
-= render partial: 'banner'
+.wrap
+  = render partial: 'banner'
 
-.container
-  .row
-    .span12.header
-      %h2 Extract and convert iPhone PNG files online!
-      %h3 Forget about <strike>pngcrush</strike>!
-      %p.lead
-        You can extract and convert iPhone PNG files (with CgBI chunk) from any IPA file to regular PNG file format use this service.
+  .container
+    .row
+      .span12.header
+        %h2 Extract and convert iPhone PNG files online!
+        %h3 Forget about <strike>pngcrush</strike>!
+        %p.lead
+          You can extract and convert iPhone PNG files (with CgBI chunk) from any IPA file to regular PNG file format use this service.
 
 
-  .row
-    .span6.offset3
-      %form#upload-files{method: 'POST', action: '/upload', enctype: 'multipart/form-data'}
-        .drop-area
-          %input#files{:type => 'file', :name => 'files[]', :multiple => :multiple}
-          = image_tag 'drop-icon.png'
-          %span Drop your iPhone PNG or IPA files here or click to select file
+    .row
+      .span6.offset3
+        %form#upload-files{method: 'POST', action: '/upload', enctype: 'multipart/form-data'}
+          .drop-area
+            %input#files{:type => 'file', :name => 'files[]', :multiple => :multiple}
+            = image_tag 'drop-icon.png'
+            %span Drop your iPhone PNG or IPA files here or click to select file
 
-  .row
-    .span12.result
+    .row
+      .span12.result
 
-.container
-  .row.footer
-    .span12
-      %p Copyright &copy; 2012-2013 <a href='http://protonail.com' target='_blank'>protonail.com</a>
-      %p <a href='mailto:support+convert-iphone-png@protonail.com'>Send feedback</a>
+  .push
+
+.footer
+  .container
+    %p Copyright &copy; 2012-2013 <a href='http://protonail.com' target='_blank'>protonail.com</a>
+    %p <a href='mailto:support+convert-iphone-png@protonail.com'>Send feedback</a>
 
 = render partial: 'github'
 = render partial: 'add_this'
