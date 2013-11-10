@@ -26,6 +26,8 @@ end
 group :development do
   gem 'sqlite3', '~> 1.3.7'
 
+  gem 'quiet_assets', '~> 1.0.2'
+
   gem 'capistrano', '~>2.12.0'
   gem 'rvm-capistrano', '~>1.2.5'
   gem 'capistrano-ext', '~>1.2.1'
