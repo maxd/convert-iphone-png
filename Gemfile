@@ -24,7 +24,7 @@ group :assets do
 end
 
 group :development do
-  gem 'sqlite3', '~> 1.3.7'
+  gem 'sqlite3', '~> 1.3.8'
 
   gem 'quiet_assets', '~> 1.0.2'
 
